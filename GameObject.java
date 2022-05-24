@@ -1,4 +1,4 @@
-package com.tank;
+package com.sxt;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -7,20 +7,23 @@ import java.awt.Toolkit;
 
 public abstract class GameObject {
 	//图片
-	private Image img;
+	public Image img;
 	//坐标
-	private int x;
-	private int y;
+	public int x;
+	public int y;
 	//界面
 	private GamePanel gamePanel;
 	public GameObject(String img,int x,int y,GamePanel gamePanel) {
-		this.img = Toolkit.getDefaultToolkit().getImage(img);
-		this.x = x;
-		this.y = y;
-		this.gamePanel = gamePanel;
+	this.img = Toolkit.getDefaultToolkit().getImage(img);//把图片换成img类型
+	this.x = x;
+	this.y = y;
+	this.gamePanel = gamePanel;
 	}
-	public abstract void painSelft(Graphics g);
-	
-	public abstract Rectangle gerRec();
+	//游戏元素需要的共同方法
+	//（绘制方法）
+   public abstract void paintSelft(Graphics g);
+   //为了检测坦克和子弹有没有发生碰撞
+   public abstract Rectangle gerRec();
+public abstract void painSelf(Graphics g);
+public abstract Rectangle getRec();
 }
-//
