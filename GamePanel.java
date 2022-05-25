@@ -26,20 +26,20 @@ public class GamePanel extends JFrame {
 	 //已生成敌人数量
 	 int enemyCount = 0;
 //窗口尺寸
-	 int width = 800;
-	 int height = 610;
+	 int width =900;
+	 int height =810;
 	 //物体集合
 	    public List<Tank> tankList = new ArrayList<>();
 	    public List<Bullet> bulletList = new ArrayList<Bullet>();
-	    public List<Bot> botList1 = new ArrayList<Bot>();
+	    public List<Bot> botList = new ArrayList<Bot>();
 	    
 //指针图片
 	 Image select = Toolkit.getDefaultToolkit().getImage("images/selecttank.gif");
 //指针初始纵坐标
      int y=150;
      //游戏元素列表
-     ArrayList<Bullet> bulletlist = new ArrayList<Bullet>();
-     ArrayList<Bot> botList = new ArrayList<Bot>();
+  //   ArrayList<Bullet> bulletlist = new ArrayList<Bullet>();
+//     ArrayList<Bot> botList = new ArrayList<Bot>();
      ArrayList<Bullet> removeList = new ArrayList<Bullet>();
      ArrayList<Tank> playerList = new ArrayList<Tank>();
      PlayerOne playerOne = new PlayerOne("images/p1tankU.gif",125,510,this,
@@ -52,7 +52,7 @@ public class GamePanel extends JFrame {
 //窗口启动方法
     public void lanuch() {
 	//标题
-	setTitle("坦克大战");
+	setTitle("靓女靓仔坦克大战");
 	//窗口初始大小
 	setSize(width,height);
 	//使屏幕居中
@@ -71,7 +71,7 @@ public class GamePanel extends JFrame {
 		if(count % 100 == 1 && enemyCount < 10) {
 			Random random = new Random();
 			int rnum = random.nextInt(800);
-			botList1.add(new Bot("images/enemy1U.gif",rnum,110,this, 
+			botList.add(new Bot("images/enemy1U.gif",rnum,110,this, 
 					   "images/enemy1U.gif","images/enemy1L.gif", 
 					   "images/enemy1R.gif","images/enemy1D.gif"));
 			enemyCount ++;
@@ -96,11 +96,11 @@ public void paint (Graphics g) {
 	//获得该图片的画布
 	Graphics gImage = offScreemImage.getGraphics();
 	//设置背景颜色（默认黑色）
-	gImage.setColor(Color.gray);
+	gImage.setColor(Color.black);
 	//为窗口添加背景（绘制实心矩形，然后填充整个画布）
 	gImage.fillRect(0, 0, width, height);
 	//改变画笔颜色，让它和背景颜色区分开
-	gImage.setColor(Color.blue);
+	gImage.setColor(Color.white);
 	//改变文字大小和样式
 	gImage.setFont(new Font ("仿宋",Font.BOLD,50));
 	//state = 0,游戏未开始；
@@ -125,12 +125,12 @@ public void paint (Graphics g) {
 	//添加游戏元素
 	playerOne.painSelf(gImage);
 	//循环子弹列表
-	for(Bullet bullet: bulletlist) {
+	for(Bullet bullet: bulletList) {
 		bullet.paintSelft(gImage);
 	}
 	bulletList.removeAll(removeList);
 	/*bot.painSelf(gImage);*/
-	for(Bot bot:botList1) {
+	for(Bot bot:botList) {
 		bot.painSelf(gImage);
 	}
 	//重绘一次

@@ -59,7 +59,8 @@ public abstract class Tank extends GameObject{
 		if(attackCoolDown) {
 		Point p = this.getHeadPoint();
 		Bullet bullet = new Bullet("images/bulletGreen.gif",p.x,p.y,this.gamePanel,direction);
-		this.gamePanel.bulletlist.add(bullet);
+//		System.out.println(bullet);
+		this.gamePanel.bulletList.add(bullet);
 		//线程开始
 		new AttackCD().start();
 	}
