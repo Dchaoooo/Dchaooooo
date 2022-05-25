@@ -1,4 +1,4 @@
-package com.csy;
+package com.sxt;
 
 import java.awt.Graphics;
 import java.awt.Point;
@@ -12,7 +12,7 @@ public abstract class Tank extends GameObject{
 	//坦克速度
 	private int speed= 3;
 			//坦克初始方向（向上）
-	protected	Direction direction = Direction.UP;
+	private	Direction direction = Direction.UP;
      //四个方向图片
 	private String upImg;
 	private String leftImg;
@@ -22,7 +22,6 @@ public abstract class Tank extends GameObject{
 	private boolean attackCoolDown = true;
 	//攻击冷却时间毫秒间隔1000ms
 	private int attackCoolDownTime = 1000;
-	public boolean alive;
 	
 	//坦克类的构造函数
 	public Tank(String img, int x, int y, GamePanel gamePanel,
@@ -50,7 +49,7 @@ public abstract class Tank extends GameObject{
 		setImg(rightImg);
 		this.x += speed;
 	}
-	public void downward() {
+	public void downward() { 
 		direction = Direction.DOWN;
 		setImg(downImg);
 		this.y += speed;
@@ -68,7 +67,8 @@ public abstract class Tank extends GameObject{
 		
 		//新线程 （新建一个类继承Thread类）
 		class AttackCD extends Thread{
-	    public void run() {                     /*添加方法，命名为run*/
+	    @SuppressWarnings("deprecation")
+		public void run() {                     /*添加方法，命名为run*/
 				//将攻击功能设置为冷却状态
 				attackCoolDown = false;
 				//休眠1秒

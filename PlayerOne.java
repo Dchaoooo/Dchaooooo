@@ -1,4 +1,4 @@
-package com.csy;
+package com.sxt;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;

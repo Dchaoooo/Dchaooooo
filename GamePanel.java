@@ -1,4 +1,4 @@
-package com.csy;
+package com.sxt;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -22,7 +22,7 @@ public class GamePanel extends JFrame {
 	//临时变量
 	 int a = 1;
 	 //重绘次数
-	 public int count = 0;
+	 int count = 0;
 	 //已生成敌人数量
 	 int enemyCount = 0;
 //窗口尺寸
@@ -123,10 +123,7 @@ public void paint (Graphics g) {
 		gImage.drawString("双人模式", 220, 200);
 		}
 	//添加游戏元素
-	/*playerOne.painSelf(gImage);*/
-	for(Tank player: tankList) {
-		player.painSelf(gImage);
-	}
+	playerOne.painSelf(gImage);
 	//循环子弹列表
 	for(Bullet bullet: bulletlist) {
 		bullet.paintSelft(gImage);
@@ -167,8 +164,6 @@ private class KeyMonitor extends KeyAdapter{
 			tankList.add(playerOne);
 		state = a;
 		start = true;
-		playerList.add(playerOne);
-		//playertwo
 		break;
 		default:
 		playerOne.keyPressed(e);
@@ -188,6 +183,3 @@ private class KeyMonitor extends KeyAdapter{
 		gamePanel.lanuch();
 	}
   }
-
-
-
