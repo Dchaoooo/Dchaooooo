@@ -1,4 +1,5 @@
-package com.csy;
+
+package com.sxt;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -24,8 +25,8 @@ public class GamePanel extends JFrame {
     //重绘次数
     public int count = 0;
     //窗口长宽
-    private int width = 800;
-    private int height = 610;
+    private int width = 900;
+    private int height = 900;
     //敌人数量
     private int enemyCount = 0;
     //高度
@@ -57,7 +58,7 @@ public class GamePanel extends JFrame {
     //窗口的启动方法
     public void launch(){
         //标题
-        setTitle("坦克大战");
+        setTitle("靓女靓仔坦克大战");
         //窗口初始大小
         setSize(width, height);
         //用户不能调整大小
@@ -126,7 +127,7 @@ public class GamePanel extends JFrame {
         //填充整个画布
         gImage.fillRect(0, 0, width, height);
         //改变画笔的颜色
-        gImage.setColor(Color.yellow);
+        gImage.setColor(Color.white);
         //改变文字大小和样式
         gImage.setFont(new Font("仿宋",Font.BOLD,50));
         if(state == 0){
@@ -174,10 +175,10 @@ public class GamePanel extends JFrame {
             gImage.drawString("游戏暂停",220,200);
         }
         else if(state == 4){
-            gImage.drawString("游戏失败",220,200);
+            gImage.drawString("FAIL",220,200);
         }
         else if(state == 5){
-            gImage.drawString("游戏胜利",220,200);
+            gImage.drawString("WICTORY",220,200);
         }
         /** 将缓冲区绘制好的图形整个绘制到容器的画布中 */
         g.drawImage(offScreenImage, 0, 0, null);

@@ -1,4 +1,5 @@
-package com.csy;
+
+package com.sxt;
 
 import java.awt.*;
 import java.util.Random;
@@ -57,7 +58,7 @@ public class Bot extends Tank{
         //System.out.println("r: "+rnum);
         if(rnum<2) {
             System.out.println(rnum);
-            EnemyBullet enemyBullet = new EnemyBullet("images/bulletYellow.gif",p.x,p.y,direction,gamePanel);
+            EnemyBullet enemyBullet = new EnemyBullet("images/blue.png",p.x,p.y,direction,gamePanel);
             this.gamePanel.bulletList.add(enemyBullet);
         }
     }

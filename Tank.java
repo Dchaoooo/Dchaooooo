@@ -1,4 +1,4 @@
-package com.csy;
+package com.sxt;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -64,7 +64,7 @@ public class Tank extends GameObject{
     public void attack(){
         Point p = getHeadPoint();
         if(attackCoolDown && alive){
-            Bullet bullet = new Bullet("images/bulletGreen.gif",p.x,p.y,direction, this.gamePanel);
+            Bullet bullet = new Bullet("images/pink.png",p.x,p.y,direction, this.gamePanel);
             this.gamePanel.bulletList.add(bullet);
             attackCoolDown = false;
             new AttackCD().start();
