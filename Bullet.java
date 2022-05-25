@@ -1,7 +1,8 @@
-package com.sxt;
+package com.csy;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.List;
 
 public class Bullet extends GameObject {
 	//尺寸
@@ -45,12 +46,27 @@ public class Bullet extends GameObject {
 		break;
 	}
 	}
-	
+	public void hitBot() {
+		//ArrayList<Bot> bots = this.gamePanel.botList;
+		Rectangle next= this.getRec();
+        List<Bot> bots = this.gamePanel.botList;
+		for(Bot bot: bots) {
+			//我方子弹与敌方坦克检测碰撞
+			if(bot.getRec().intersects(next)){
+                System.out.println("hit bot");
+					//this.gerRec().intersects(bot.getRec())) {
+				this.gamePanel.botList.remove(bot);
+				this.gamePanel.removeList.add(this);
+				break;
+			}
+		}
+	}
 	@Override
 	public void paintSelft(Graphics g) {
 		// TODO Auto-generated method stub
 		g.drawImage(img, x, y, null);
 		this.go();
+		this.hitBot();
 	}
 	@Override
 	public Rectangle gerRec() {
