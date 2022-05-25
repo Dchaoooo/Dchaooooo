@@ -1,25 +1,35 @@
-package com.sxt;
+package tankwar;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
+import java.awt.*;
+import java.util.List;
 
 public class EnemyBullet extends Bullet {
+    public EnemyBullet(String img, int x, int y, Direction direction,GamePanel gamePanel){
+        super(img, x, y, direction, gamePanel);
+    }
 
-	public EnemyBullet(String img, int x, int y, GamePanel gamePanel, Direction direction) {
-		super(img, x, y, gamePanel, direction);
-		// TODO 自动生成的构造函数存根
-	}
+    public void hitTank(){
+        Rectangle next= this.getRec();
+        java.util.List<Tank> tanks = this.gamePanel.tankList;
+        //瀛愬脊鍜孴ank
+        for(Tank tank: tanks){
+            if(tank.getRec().intersects(next)){
+                System.out.println("hit tank");
+                tank.alive = false;
+                this.gamePanel.blastList.add(new BlastObj(tank.x-34, tank.y-14));
+                this.gamePanel.tankList.remove(tank);
+                this.gamePanel.removeList.add(this);
+                break;
 
-	public void paintSelft(Graphics g) {
-		// TODO Auto-generated method stub
-		g.drawImage(img, x, y, null);
-		this.go();
-	}
+            }
+        }
+    }
 
-	public Rectangle gerRec() {
-		// TODO Auto-generated method stub
-		return new Rectangle(x,y,width,height);
-	}
-	
+    public void paintSelf(Graphics g){
+        g.drawImage(img, x, y, null);
+        go();
+        hitBase();
+        hitWall();
+        hitTank();
+    }
 }
-
