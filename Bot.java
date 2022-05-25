@@ -1,4 +1,4 @@
-package tankwar;
+package com.csy;
 
 import java.awt.*;
 import java.util.Random;
@@ -33,7 +33,7 @@ public class Bot extends Tank{
         }
     }
 
-    //鐢佃剳鍧﹀厠闅忔満鏂瑰悜
+    //电脑坦克随机方向
     public Direction randomDirection() {
         Random r = new Random();
         int rnum = r.nextInt(4);
@@ -49,14 +49,15 @@ public class Bot extends Tank{
         }
     }
 
-    //鍙湁4%鍑犵巼鏀诲嚮
+    //只有2%几率攻击
     public void attack() {
         Point p = getHeadPoint();
         Random r = new Random();
         int rnum =r.nextInt(100);
         //System.out.println("r: "+rnum);
-        if(rnum<4) {
-            EnemyBullet enemyBullet = new EnemyBullet("images/bullet/bulletYellow.gif",p.x,p.y,direction,gamePanel);
+        if(rnum<2) {
+            System.out.println(rnum);
+            EnemyBullet enemyBullet = new EnemyBullet("images/bulletYellow.gif",p.x,p.y,direction,gamePanel);
             this.gamePanel.bulletList.add(enemyBullet);
         }
     }
@@ -64,7 +65,7 @@ public class Bot extends Tank{
     @Override
     public void paintSelf(Graphics g) {
         g.drawImage(img,x,y,null);
-        this.go();
+        go();
     }
 
     @Override

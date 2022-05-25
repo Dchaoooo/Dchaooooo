@@ -1,4 +1,4 @@
-package tankwar;
+package com.csy;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -7,24 +7,24 @@ import java.util.List;
 
 public class Tank extends GameObject{
 
-    private boolean attackCoolDown =true;//æ”»å‡»å†·å´çŠ¶æ€
-    private int attackCoolDownTime =1000;//æ”»å‡»å†·å´æ—¶é—´æ¯«ç§’é—´éš”1000mså‘å°„å­å¼¹
-    private String upImage; //å‘ä¸Šç§»åŠ¨æ—¶çš„å›¾ç‰‡
-    private String downImage;//å‘ä¸‹ç§»åŠ¨æ—¶çš„å›¾ç‰‡
-    private String rightImage;//å‘å³ç§»åŠ¨æ—¶çš„å›¾ç‰‡
-    private String leftImage;//å‘å·¦ç§»åŠ¨æ—¶çš„å›¾ç‰‡
+    private boolean attackCoolDown =true;//¹¥»÷ÀäÈ´×´Ì¬
+    private int attackCoolDownTime =1000;//¹¥»÷ÀäÈ´Ê±¼äºÁÃë¼ä¸ô1000ms·¢Éä×Óµ¯
+    private String upImage; //ÏòÉÏÒÆ¶¯Ê±µÄÍ¼Æ¬
+    private String downImage;//ÏòÏÂÒÆ¶¯Ê±µÄÍ¼Æ¬
+    private String rightImage;//ÏòÓÒÒÆ¶¯Ê±µÄÍ¼Æ¬
+    private String leftImage;//Ïò×óÒÆ¶¯Ê±µÄÍ¼Æ¬
     boolean alive = true;
-    //å¦å…‹size
+    //Ì¹¿Ësize
     int width = 40;
     int height = 50;
-    //å¦å…‹åˆå§‹æ–¹å‘
+    //Ì¹¿Ë³õÊ¼·½Ïò
     Direction direction = Direction.UP;
-    //å¦å…‹é€Ÿåº¦
+    //Ì¹¿ËËÙ¶È
     private int speed = 3;
-    //å¦å…‹å¤´éƒ¨åæ ‡
+    //Ì¹¿ËÍ·²¿×ø±ê
     Point p;
 
-    //å¦å…‹åæ ‡ï¼Œæ–¹å‘ï¼Œå›¾ç‰‡ï¼Œæ–¹å‘ï¼Œé¢æ¿
+    //Ì¹¿Ë×ø±ê£¬·½Ïò£¬Í¼Æ¬£¬·½Ïò£¬Ãæ°å
     public Tank(String img, int x, int y, String upImage, String downImage, String leftImage, String rightImage, GamePanel gamePanel) {
         super(img, x, y, gamePanel);
         this.upImage = upImage;
@@ -64,7 +64,7 @@ public class Tank extends GameObject{
     public void attack(){
         Point p = getHeadPoint();
         if(attackCoolDown && alive){
-            Bullet bullet = new Bullet("images/bullet/bulletGreen.gif",p.x,p.y,direction, this.gamePanel);
+            Bullet bullet = new Bullet("images/bulletGreen.gif",p.x,p.y,direction, this.gamePanel);
             this.gamePanel.bulletList.add(bullet);
             attackCoolDown = false;
             new AttackCD().start();
@@ -72,11 +72,11 @@ public class Tank extends GameObject{
     }
 
     public boolean hitWall(int x, int y){
-        //å‡è®¾ç©å®¶å¦å…‹å‰è¿›ï¼Œä¸‹ä¸€ä¸ªä½ç½®å½¢æˆçš„çŸ©å½¢
+        //¼ÙÉèÍæ¼ÒÌ¹¿ËÇ°½ø£¬ÏÂÒ»¸öÎ»ÖÃĞÎ³ÉµÄ¾ØĞÎ
         Rectangle next = new Rectangle(x, y, width, height);
-        //åœ°å›¾é‡Œæ‰€æœ‰çš„å¢™ä½“
+        //µØÍ¼ÀïËùÓĞµÄÇ½Ìå
         List<Wall> walls = this.gamePanel.wallList;
-        //åˆ¤æ–­ä¸¤ä¸ªçŸ©å½¢æ˜¯å¦ç›¸äº¤ï¼ˆå³æ˜¯å¦æ’å¢™ï¼‰
+        //ÅĞ¶ÏÁ½¸ö¾ØĞÎÊÇ·ñÏà½»£¨¼´ÊÇ·ñ×²Ç½£©
         for(Wall w:walls){
             if(w.getRec().intersects(next)){
                 return true;
@@ -101,18 +101,18 @@ public class Tank extends GameObject{
 
     public class AttackCD extends Thread{
         public void run(){
-            attackCoolDown=false;//å°†æ”»å‡»åŠŸèƒ½è®¾ç½®ä¸ºå†·å´çŠ¶æ€
+            attackCoolDown=false;//½«¹¥»÷¹¦ÄÜÉèÖÃÎªÀäÈ´×´Ì¬
             try{
-                Thread.sleep(attackCoolDownTime);//ä¼‘çœ 1ç§’
+                Thread.sleep(attackCoolDownTime);//ĞİÃß1Ãë
             }catch(InterruptedException e){
                 e.printStackTrace();
             }
-            attackCoolDown=true;//å°†æ”»å‡»åŠŸèƒ½è§£é™¤å†·å´çŠ¶æ€
+            attackCoolDown=true;//½«¹¥»÷¹¦ÄÜ½â³ıÀäÈ´×´Ì¬
             this.stop();
         }
     }
 
-    //æ ¹æ®æ–¹å‘ç¡®å®šå¤´éƒ¨ä½ç½®ï¼Œxå’Œyæ˜¯å·¦ä¸‹è§’çš„ç‚¹
+    //¸ù¾İ·½ÏòÈ·¶¨Í·²¿Î»ÖÃ£¬xºÍyÊÇ×óÏÂ½ÇµÄµã
     public Point getHeadPoint(){
         switch (direction){
             case UP:

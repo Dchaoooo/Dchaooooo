@@ -1,4 +1,4 @@
-package tankwar;
+package com.csy;
 
 import java.awt.*;
 
@@ -25,7 +25,7 @@ public class BlastObj extends GameObject {
 
     @Override
     public void paintSelf(Graphics g) {
-        //绘制点击爆炸效果
+        //ƵըЧ
         if (explodeCount < 8){
             g.drawImage(imgs[explodeCount],x,y,null);
             explodeCount++;

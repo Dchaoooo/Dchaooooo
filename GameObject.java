@@ -1,24 +1,24 @@
-package tankwar;
+package com.csy;
 
 import java.awt.*;
 
 public abstract class GameObject {
 
-    //æ¸¸æˆå…ƒç´ å›¾ç‰‡
+    //ÓÎÏ·ÔªËØÍ¼Æ¬
     Image img;
-    //æ¸¸æˆå…ƒç´ çš„æ¨ªåæ ‡
+    //ÓÎÏ·ÔªËØµÄºá×ø±ê
     int x;
-    //æ¸¸æˆå…ƒç´ çš„çºµåæ ‡
+    //ÓÎÏ·ÔªËØµÄ×İ×ø±ê
     int y;
-    //æ¸¸æˆå…ƒç´ çš„å®½
+    //ÓÎÏ·ÔªËØµÄ¿í
     int width;
-    //æ¸¸æˆå…ƒç´ çš„é«˜
+    //ÓÎÏ·ÔªËØµÄ¸ß
     int height;
-    //æ¸¸æˆå…ƒç´ çš„ç§»åŠ¨é€Ÿåº¦
+    //ÓÎÏ·ÔªËØµÄÒÆ¶¯ËÙ¶È
     int speed;
-    //æ¸¸æˆå…ƒç´ çš„ç§»åŠ¨æ–¹å‘
+    //ÓÎÏ·ÔªËØµÄÒÆ¶¯·½Ïò
     Direction direction;
-    //å¼•å…¥ä¸»ç•Œé¢
+    //ÒıÈëÖ÷½çÃæ
     GamePanel gamePanel;
 
     public GameObject(){}
@@ -85,9 +85,9 @@ public abstract class GameObject {
         this.gamePanel = gamePanel;
     }
 
-    //ç»§æ‰¿å…ƒç´ ç»˜åˆ¶è‡ªå·±çš„æ–¹æ³•
+    //¼Ì³ĞÔªËØ»æÖÆ×Ô¼ºµÄ·½·¨
     public abstract void paintSelf(Graphics g);
 
-    //è·å–å½“å‰æ¸¸æˆå…ƒç´ çš„çŸ©å½¢,æ˜¯ä¸ºç¢°æ’æ£€æµ‹è€Œå†™
+    //»ñÈ¡µ±Ç°ÓÎÏ·ÔªËØµÄ¾ØĞÎ,ÊÇÎªÅö×²¼ì²â¶øĞ´
     public abstract Rectangle getRec();
 }

@@ -1,4 +1,4 @@
-package tankwar;
+package com.csy;
 
 import java.awt.*;
 

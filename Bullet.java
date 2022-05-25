@@ -1,4 +1,4 @@
-package tankwar;
+package com.csy;
 
 import java.awt.*;
 import java.util.List;
@@ -15,7 +15,7 @@ public class Bullet extends GameObject{
     }
 
     public void go(){
-        /**åˆ¤æ–­ç§»åŠ¨æ–¹å‘*/
+        /**ÅĞ¶ÏÒÆ¶¯·½Ïò*/
         switch (direction){
             case UP:
                 upward();
@@ -31,7 +31,7 @@ public class Bullet extends GameObject{
                 break;
         }
     }
-    //å­å¼¹ç§»åŠ¨
+    //×Óµ¯ÒÆ¶¯
     public void leftward(){
         x -= speed;
         moveToBorder();
@@ -49,11 +49,11 @@ public class Bullet extends GameObject{
         moveToBorder();
     }
 
-    /**å­å¼¹ä¸å¦å…‹ç¢°æ’æ£€æµ‹*/
+    /**×Óµ¯ÓëÌ¹¿ËÅö×²¼ì²â*/
     public void hitBot(){
         Rectangle next= this.getRec();
         List<Bot> bots = this.gamePanel.botList;
-        //å­å¼¹å’Œbot
+        //×Óµ¯ºÍbot
         for(Bot bot: bots){
             if(bot.getRec().intersects(next)){
                 System.out.println("hit bot");
@@ -102,7 +102,7 @@ public class Bullet extends GameObject{
     public void paintSelf(Graphics g) {
         g.drawImage(img, x, y, null);
         go();
-        //ç¢°æ’æ£€æµ‹
+        //Åö×²¼ì²â
         hitBot();
         hitWall();
         hitBase();

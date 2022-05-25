@@ -1,4 +1,4 @@
-package tankwar;
+package com.csy;
 
 import java.awt.*;
 import java.util.List;
@@ -11,7 +11,7 @@ public class EnemyBullet extends Bullet {
     public void hitTank(){
         Rectangle next= this.getRec();
         java.util.List<Tank> tanks = this.gamePanel.tankList;
-        //子弹和Tank
+        //ӵTank
         for(Tank tank: tanks){
             if(tank.getRec().intersects(next)){
                 System.out.println("hit tank");
