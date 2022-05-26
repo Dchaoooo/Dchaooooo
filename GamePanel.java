@@ -1,6 +1,8 @@
 
 package com.sxt;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -8,6 +10,9 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -15,6 +20,8 @@ import java.util.Random;
 import javax.swing.JFrame;
 
 public class GamePanel extends JFrame {
+	static URL url;
+    static AudioClip ac;private static final long serialVersionUID = 1L;
 
     /** 定义双缓存图片 */
     private Image offScreenImage = null;
@@ -25,8 +32,8 @@ public class GamePanel extends JFrame {
     //重绘次数
     public int count = 0;
     //窗口长宽
-    private int width = 900;
-    private int height = 900;
+    private int width = 1200;
+    private int height = 1000;
     //敌人数量
     private int enemyCount = 0;
     //高度
@@ -46,12 +53,12 @@ public class GamePanel extends JFrame {
     //指针图片
     private Image select = Toolkit.getDefaultToolkit().getImage("images/selecttank.gif");
     //基地
-    private Base base = new Base("images/star.gif", 365, 560, this);
+    private Base base = new Base("images/star.gif", 575, 930, this);
     //玩家
-    private PlayerOne playerOne = new PlayerOne("images/p1tankU.gif", 125, 510,
+    private PlayerOne playerOne = new PlayerOne("images/p1tankU.gif", 225, 800,
             "images/p1tankU.gif","images/p1tankD.gif",
             "images/p1tankL.gif","images/p1tankR.gif", this);
-    private PlayerTwo playerTwo = new PlayerTwo("images/p2tankU.gif", 625, 510,
+    private PlayerTwo playerTwo = new PlayerTwo("images/p2tankU.gif", 900, 800,
             "images/p2tankU.gif","images/p2tankD.gif",
             "images/p2tankL.gif","images/p2tankR.gif", this);
 
@@ -72,14 +79,28 @@ public class GamePanel extends JFrame {
         //添加键盘事件
         this.addKeyListener(new GamePanel.KeyMonitor());
         //添加围墙
-        for(int i = 0; i< 14; i ++){
-            wallList.add(new Wall("images/walls.gif", i*60 ,170, this ));
+        for(int i = 0; i< 20; i ++){
+            wallList.add(new Wall("images/walls.gif", i*60,270, this ));
         }
-        wallList.add(new Wall("images/walls.gif", 305 ,560,this ));
-        wallList.add(new Wall("images/walls.gif", 305 ,500,this ));
-        wallList.add(new Wall("images/walls.gif", 365 ,500,this ));
-        wallList.add(new Wall("images/walls.gif", 425 ,500,this ));
-        wallList.add(new Wall("images/walls.gif", 425 ,560,this ));
+        for(int i = 0; i< 20; i ++){
+            wallList.add(new Wall("images/walls.gif", i*60,370, this ));
+        }
+        
+        for(int i = 0; i< 20; i ++){
+            wallList.add(new Wall("images/walls.gif", i*60 ,500, this ));
+        }
+        
+        for(int i = 0; i< 13; i ++){
+            wallList.add(new Wall("images/walls.gif", 600,i*60, this ));
+        }
+       
+       
+        wallList.add(new Wall("images/walls.gif", 505 ,920,this ));
+        wallList.add(new Wall("images/walls.gif", 505 ,870,this ));
+        wallList.add(new Wall("images/walls.gif", 565 ,870,this ));
+        wallList.add(new Wall("images/walls.gif", 625 ,870,this ));
+        wallList.add(new Wall("images/walls.gif", 625 ,920,this ));
+        
         //添加基地
         baseList.add(base);
 
@@ -132,21 +153,27 @@ public class GamePanel extends JFrame {
         gImage.setFont(new Font("仿宋",Font.BOLD,50));
         if(state == 0){
             //添加文字
-            gImage.drawString("选择游戏模式",220,100);
-            gImage.drawString("单人游戏",220,200);
-            gImage.drawString("双人游戏",220,300);
-            gImage.drawString("按1，2选择模式，按回车开始游戏",0,400);
+            gImage.drawString("选择游戏模式",420,100);
+            gImage.drawString("单人游戏",420,200);
+            gImage.drawString("双人游戏",420,300);
+            gImage.drawString("按1，2选择模式，按回车开始游戏",200,400);
             gImage.drawImage(select,160,y,null);
         }
         else if(state == 1||state == 2){
+        	gImage.setFont(new Font("仿宋",Font.BOLD,30));
             gImage.setColor(Color.red);
+            gImage.drawString("剩余敌人："+botList.size(),20,100);
+            gImage.setColor(Color.white);
             gImage.setFont(new Font("仿宋",Font.BOLD,20));
-            gImage.drawString("WASD控制移动",0,510);
-            gImage.drawString("空格射击",0,550);
+            gImage.drawString("WASD控制移动",100,800);
+            gImage.drawString("空格射击",100,850);
             if(state == 2){
-                gImage.drawString("方向键控制移动",575,510);
-                gImage.drawString("K射击",575,550);
+                gImage.drawString("方向键控制移动",1000,800);
+                gImage.drawString("K射击",1050,850);
+                
+                
             }
+            
 
             //paint重绘游戏元素
             for(Tank tank : tankList){
@@ -172,13 +199,13 @@ public class GamePanel extends JFrame {
             count++;
         }
         else if(state == 3){
-            gImage.drawString("游戏暂停",220,200);
+            gImage.drawString("游戏暂停",350,400);
         }
         else if(state == 4){
-            gImage.drawString("FAIL",220,200);
+            gImage.drawString("GAME OVER",450,500);
         }
         else if(state == 5){
-            gImage.drawString("WICTORY",220,200);
+            gImage.drawString("VICTORY",550,500);
         }
         /** 将缓冲区绘制好的图形整个绘制到容器的画布中 */
         g.drawImage(offScreenImage, 0, 0, null);
@@ -240,4 +267,16 @@ public class GamePanel extends JFrame {
         GamePanel gamePanel = new GamePanel();
         gamePanel.launch();
     }
-}
+    public static void main1(String[] args) throws MalformedURLException {
+    	File f1 = new File("music\\war1.wav");
+    	url = f1.toURL();
+    	ac = Applet.newAudioClip(url);
+    	ac.loop();
+        GamePanel gamePanel = new GamePanel();
+        gamePanel.launch();
+          }
+   
+	   }
+	
+   
+   

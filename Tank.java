@@ -8,7 +8,7 @@ import java.util.List;
 public class Tank extends GameObject{
 
     private boolean attackCoolDown =true;//攻击冷却状态
-    private int attackCoolDownTime =1000;//攻击冷却时间毫秒间隔1000ms发射子弹
+    private int attackCoolDownTime =200;//攻击冷却时间毫秒间隔1000ms发射子弹
     private String upImage; //向上移动时的图片
     private String downImage;//向下移动时的图片
     private String rightImage;//向右移动时的图片
@@ -20,7 +20,7 @@ public class Tank extends GameObject{
     //坦克初始方向
     Direction direction = Direction.UP;
     //坦克速度
-    private int speed = 3;
+    private int speed = 4;
     //坦克头部坐标
     Point p;
 

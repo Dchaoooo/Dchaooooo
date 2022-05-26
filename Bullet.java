@@ -72,7 +72,7 @@ public class Bullet extends GameObject{
             if (base.getRec().intersects(next)) {
                 this.gamePanel.baseList.remove(base);
                 this.gamePanel.removeList.add(this);
-                this.gamePanel.state = 4;
+                this.gamePanel.state = 5;
                 break;
             }
         }

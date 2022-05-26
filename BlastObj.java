@@ -11,7 +11,7 @@ public class BlastObj extends GameObject {
 
     static {
         for (int i = 0; i < 8; i++) {
-            imgs[i] = Toolkit.getDefaultToolkit().getImage("images/blast/blast" +(i + 1)+".gif");
+            imgs[i] = Toolkit.getDefaultToolkit().getImage("images/blast" +(i + 1)+".gif");
         }
     }
 

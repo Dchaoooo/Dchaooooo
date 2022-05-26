@@ -54,7 +54,7 @@ public class Bot extends Tank{
     public void attack() {
         Point p = getHeadPoint();
         Random r = new Random();
-        int rnum =r.nextInt(100);
+        int rnum =r.nextInt(400);
         //System.out.println("r: "+rnum);
         if(rnum<2) {
             System.out.println(rnum);
