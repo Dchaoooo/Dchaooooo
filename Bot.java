@@ -1,5 +1,4 @@
-
-package com.sxt;
+package com.csy;
 
 import java.awt.*;
 import java.util.Random;
@@ -54,11 +53,11 @@ public class Bot extends Tank{
     public void attack() {
         Point p = getHeadPoint();
         Random r = new Random();
-        int rnum =r.nextInt(400);
+        int rnum =r.nextInt(100);
         //System.out.println("r: "+rnum);
         if(rnum<2) {
             System.out.println(rnum);
-            EnemyBullet enemyBullet = new EnemyBullet("images/blue.png",p.x,p.y,direction,gamePanel);
+            EnemyBullet enemyBullet = new EnemyBullet("images/lan.png",p.x,p.y,direction,gamePanel);
             this.gamePanel.bulletList.add(enemyBullet);
         }
     }

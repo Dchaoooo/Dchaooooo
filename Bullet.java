@@ -1,5 +1,4 @@
-
-package com.sxt;
+package com.csy;
 
 import java.awt.*;
 import java.util.List;
@@ -72,7 +71,7 @@ public class Bullet extends GameObject{
             if (base.getRec().intersects(next)) {
                 this.gamePanel.baseList.remove(base);
                 this.gamePanel.removeList.add(this);
-                this.gamePanel.state = 5;
+                this.gamePanel.state = 4;
                 break;
             }
         }

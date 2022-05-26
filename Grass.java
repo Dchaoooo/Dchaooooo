@@ -1,12 +1,12 @@
 package com.csy;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 
-import java.awt.*;
+public class Grass extends GameObject {
 
-public class Wall extends GameObject {
-
-    public int width = 60;
-    public int height = 60;
-    public Wall(String img, int x, int y, GamePanel gamePanel){
+    public int width = 70;
+    public int height = 70;
+    public Grass(String img, int x, int y, GamePanel gamePanel){
         super(img, x, y, gamePanel);
     }
 

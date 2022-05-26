@@ -1,8 +1,6 @@
-package com.sxt;
+package com.csy;
 
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.List;
 
 public class Tank extends GameObject{
@@ -64,7 +62,7 @@ public class Tank extends GameObject{
     public void attack(){
         Point p = getHeadPoint();
         if(attackCoolDown && alive){
-            Bullet bullet = new Bullet("images/pink.png",p.x,p.y,direction, this.gamePanel);
+            Bullet bullet = new Bullet("images/fen.png",p.x,p.y,direction, this.gamePanel);
             this.gamePanel.bulletList.add(bullet);
             attackCoolDown = false;
             new AttackCD().start();
@@ -123,6 +121,7 @@ public class Tank extends GameObject{
                 return new Point(x + width/2, y + height);
             case RIGHT:
                 return new Point(x + width, y + height/2);
+                
             default:
                 return null;
         }

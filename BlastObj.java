@@ -1,16 +1,15 @@
-
-package com.sxt;
+package com.csy;
 
 import java.awt.*;
 
 public class BlastObj extends GameObject {
 
-    static Image[] imgs = new Image[8];
+    static Image[] imgs = new Image[16];
 
     int explodeCount = 0;
 
     static {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 16; i++) {
             imgs[i] = Toolkit.getDefaultToolkit().getImage("images/blast" +(i + 1)+".gif");
         }
     }
@@ -27,7 +26,7 @@ public class BlastObj extends GameObject {
     @Override
     public void paintSelf(Graphics g) {
         //ƵըЧ
-        if (explodeCount < 8){
+        if (explodeCount < 16){
             g.drawImage(imgs[explodeCount],x,y,null);
             explodeCount++;
         }
