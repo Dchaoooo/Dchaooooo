@@ -13,8 +13,8 @@ public class Tank extends GameObject{
     private String leftImage;//向左移动时的图片
     boolean alive = true;
     //坦克size
-    int width = 40;
-    int height = 50;
+    int width = 35;
+    int height = 45;
     //坦克初始方向
     Direction direction = Direction.UP;
     //坦克速度
@@ -34,28 +34,28 @@ public class Tank extends GameObject{
     public void leftward(){
         direction = Direction.LEFT;
         setImg(leftImage);
-        if(!hitWall(x-speed, y) && !moveToBorder(x-speed, y) && alive){
+        if(!hitWall(x-speed, y) &&!hitRiver(x-speed, y) && !moveToBorder(x-speed, y) && alive){
             this.x -= speed;
         }
     }
     public void rightward(){
         direction = Direction.RIGHT;
         setImg(rightImage);
-        if(!hitWall(x+speed, y) && !moveToBorder(x+speed, y) && alive){
+        if(!hitWall(x+speed, y) &&!hitRiver(x+speed, y) && !moveToBorder(x+speed, y) && alive){
             this.x += speed;
         }
     }
     public void upward(){
         direction = Direction.UP;
         setImg(upImage);
-        if(!hitWall(x, y-speed) && !moveToBorder(x, y- speed) && alive){
+        if(!hitWall(x, y-speed) &&!hitRiver(x, y-speed) && !moveToBorder(x, y- speed) && alive){
             this.y -= speed;
         }
     }
     public void downward(){
         direction = Direction.DOWN;
         setImg(downImage);
-        if(!hitWall(x, y+speed) && !moveToBorder(x, y+speed) && alive){
+        if(!hitWall(x, y+speed) &&!hitRiver(x, y+speed) && !moveToBorder(x, y+speed) && alive){
             this.y += speed;
         }
     }
@@ -82,7 +82,20 @@ public class Tank extends GameObject{
         }
         return false;
     }
-
+    public boolean hitRiver(int x, int y){
+        //假设玩家坦克前进，下一个位置形成的矩形
+        Rectangle next = new Rectangle(x, y, width, height);
+        //地图里所有的墙体
+        List<River> rivers = this.gamePanel.riverList;
+        //判断两个矩形是否相交（即是否撞墙）
+        for(River r:rivers){
+            if(r.getRec().intersects(next)){
+                return true;
+            }
+        }
+        return false;
+    }
+//边界
     public boolean moveToBorder(int x, int y){
         if(x < 0){
             return true;
