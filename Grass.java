@@ -1,4 +1,4 @@
-package com.csy;
+package Tank;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
